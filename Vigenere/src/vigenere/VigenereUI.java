@@ -145,9 +145,16 @@ public class VigenereUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String ASCII = "abcdefghijklmnopqrstuvwxyz";
-        String plainText = jTextField1.getText(); //Lấy value plainText
+        String getPlainText = jTextField1.getText(); //Lấy value plainText
         String key = jTextField3.getText(); //Lấy value Key
-
+        String plainText = "";
+        for(int a=0;a<getPlainText.length();a++){
+            char ch = getPlainText.charAt(a);
+            int index = ASCII.indexOf(ch);
+            if(index != -1){
+                plainText+=ch;
+            }
+        }
         //Chuyển toàn bộ plainText sang chữ thường
         plainText = plainText.toLowerCase();
         String encryption = ""; //Biến để lưu kết quả
@@ -191,8 +198,16 @@ public class VigenereUI extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //Tương tự như trên
         String ASCII = "abcdefghijklmnopqrstuvwxyz";
-        String cipherText = jTextField2.getText();
+        String getCipherText = jTextField2.getText();
         String key = jTextField3.getText();
+        String cipherText = "";
+        for(int a=0;a<getCipherText.length();a++){
+            char ch = getCipherText.charAt(a);
+            int index = ASCII.indexOf(ch);
+            if(index != -1){
+                cipherText+=ch;
+            }
+        }
         
         cipherText = cipherText.toLowerCase();
         String decryption = "";
