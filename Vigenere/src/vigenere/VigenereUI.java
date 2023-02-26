@@ -5,6 +5,8 @@
  */
 package vigenere;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Crodic
@@ -148,6 +150,10 @@ public class VigenereUI extends javax.swing.JFrame {
         String getPlainText = jTextField1.getText(); //Lấy value plainText
         String key = jTextField3.getText(); //Lấy value Key
         String plainText = "";
+        if(getPlainText.length()<key.length()){
+            JOptionPane.showMessageDialog(null, "Độ dài của key không được lớn hơn độ dài của PlainText");
+            return;
+        }
         for(int a=0;a<getPlainText.length();a++){
             char ch = getPlainText.charAt(a);
             int index = ASCII.indexOf(ch);
@@ -201,6 +207,10 @@ public class VigenereUI extends javax.swing.JFrame {
         String getCipherText = jTextField2.getText();
         String key = jTextField3.getText();
         String cipherText = "";
+        if(getCipherText.length()<key.length()){
+            JOptionPane.showMessageDialog(null, "Độ dài của key không được lớn hơn độ dài của CipherText");
+            return;
+        }
         for(int a=0;a<getCipherText.length();a++){
             char ch = getCipherText.charAt(a);
             int index = ASCII.indexOf(ch);

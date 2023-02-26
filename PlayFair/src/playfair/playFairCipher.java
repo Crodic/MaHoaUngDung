@@ -38,6 +38,9 @@ public class playFairCipher extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,7 +54,7 @@ public class playFairCipher extends javax.swing.JFrame {
 
         jLabel1.setText("PlainText");
 
-        jLabel2.setText("PlainText");
+        jLabel2.setText("CipherText");
 
         jScrollPane3.setViewportView(jTextPane1);
 
@@ -71,6 +74,12 @@ public class playFairCipher extends javax.swing.JFrame {
             }
         });
 
+        jTextArea3.setColumns(20);
+        jTextArea3.setRows(5);
+        jScrollPane4.setViewportView(jTextArea3);
+
+        jLabel4.setText("After Key");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,20 +88,21 @@ public class playFairCipher extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(73, 73, 73)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jButton1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton2))
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2))
+                            .addComponent(jScrollPane4)
+                            .addComponent(jLabel4))))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -109,14 +119,23 @@ public class playFairCipher extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2))
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel4)
+                        .addGap(5, 5, 5)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
@@ -127,6 +146,8 @@ public class playFairCipher extends javax.swing.JFrame {
         String cipher = jTextArea2.getText();
         char[][] matrix = new char[5][5];
         createMaTrix(key, matrix);
+        String showMatrix = changeTypeMatrix(key, matrix);
+        jTextArea3.setText(showMatrix);
         String resual = removeNonLetterCharactersForPAndC(cipher);
         String[] pairs = padding(resual);
         String DecodeText="";
@@ -162,6 +183,7 @@ public class playFairCipher extends javax.swing.JFrame {
             }
         }
         jTextArea1.setText(DecodeText);
+        jTextArea2.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -169,6 +191,8 @@ public class playFairCipher extends javax.swing.JFrame {
         String plaintext = jTextArea1.getText();
         char[][] matrix = new char[5][5];
         createMaTrix(key, matrix);//tạo ma trận của key
+        String showMatrix = changeTypeMatrix(key, matrix);
+        jTextArea3.setText(showMatrix);
         String resual = removeNonLetterCharactersForPAndC(plaintext);//xóa không phải kí tự của plaintext
         String[] pairs = padding(resual);//tạo cặp vào gán vào mảng 1 chiều pairs
         String encodeText= "";//chuỗi rỗng
@@ -194,8 +218,8 @@ public class playFairCipher extends javax.swing.JFrame {
                 encodeText += matrix[row2][(col2 + 1) % 5]; //đảm bảo rằng chỉ số hàng dùng %5 gặp kí tự tìm thấy trong ma trận sau khi dịch chuyển vào chuỗi rộng đã tạo trước đó
             }
             else if (col1 == col2) { //dịch xuống dưới 1 ô theo cột
-                encodeText += matrix[row1+1 % 5][(col1 )]; //theo cột thì t chuyển sang phần row trong ma trận 
-                encodeText += matrix[row2+1 % 5][(col2 )];//theo cột thì t chuyển sang phần row trong ma trận 
+                encodeText += matrix[(row1+1) % 5][(col1)]; //theo cột thì t chuyển sang phần row trong ma trận 
+                encodeText += matrix[(row2+1) % 5][(col2)]; //theo cột thì t chuyển sang phần row trong ma trận 
             }
             else // trường hợp nếu không cùng hàng thì lấy ví dòng và cột cuả kí tự  đổi cho nhau
             {
@@ -204,6 +228,7 @@ public class playFairCipher extends javax.swing.JFrame {
             }
         }
         jTextArea2.setText(encodeText);
+        jTextArea1.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
     
     /**
@@ -282,7 +307,7 @@ public class playFairCipher extends javax.swing.JFrame {
       return pairs;
 }
 
-    public static void createMaTrix(String key, char[][] matrix) // hàm tạo ma trận key
+    public static void createMaTrix(String key, char [][] matrix) // hàm tạo ma trận key
     {
         String a ="abcdefghiklmnopqrstuvwxyz"; // khởi tạo từ chuỗi kí tự từ a-z
         //key=key.toLowerCase()+a;
@@ -303,9 +328,6 @@ public class playFairCipher extends javax.swing.JFrame {
                 k++;
             }
         }
-        
-        
-            
     }
     public static String removeNonLetterCharactersForKey(String key) // hàm xóa mọi thứ không phải là kí tự của key
     {
@@ -318,6 +340,17 @@ public class playFairCipher extends javax.swing.JFrame {
         }
         return result;
     }
+    public static String changeTypeMatrix(String key, char[][] matrix)
+    {
+        createMaTrix(key, matrix);
+        String resual="";
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                resual += matrix[i][j];
+            }
+        }
+       return resual;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -325,11 +358,14 @@ public class playFairCipher extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }
