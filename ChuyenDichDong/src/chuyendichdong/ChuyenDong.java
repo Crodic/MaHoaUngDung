@@ -129,7 +129,10 @@ public class ChuyenDong extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String key = jTextField3.getText();
+        key = deleteSpace(key);
+
         String plainText = jTextField1.getText();
+        plainText = deleteSpace(plainText);
         int[] numKey = keyWord(key);
 
         int residualcheck = plainText.length() % key.length(); // kiem tra co du khong
@@ -170,7 +173,9 @@ public class ChuyenDong extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String cipherText = jTextField2.getText();
+        cipherText = deleteSpace(cipherText);
         String key = jTextField3.getText();
+        key = deleteSpace(key);
         int numRow = cipherText.length() / key.length(); //tao so dong
         char[][] arr = new char[numRow][key.length()];
         int[] numList = keyWord(key);
@@ -271,6 +276,19 @@ public class ChuyenDong extends javax.swing.JFrame {
             }
         }
         return a;
+    }
+
+    public static String deleteSpace(String text) {
+        text = text.toLowerCase();
+        text = text.replace(" ", "");
+        String result = "";//tạo chuỗi rỗng
+        for (int i = 0; i < text.length(); i++) { // dùng vòng lặp for để duyệt lấy kí tự
+            char c = text.charAt(i); //dùng kiểu dữ liệu char để lấy một kí tự trong chuỗi string dùng charAt
+            if (Character.isLetter(c)) { // kiểm tra có phải là kí tự không
+                result += c; // nếu là kí tự thì thêm vào chuỗi
+            }
+        }
+        return result;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
