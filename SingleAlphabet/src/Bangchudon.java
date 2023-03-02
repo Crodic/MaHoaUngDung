@@ -44,6 +44,10 @@ public class Bangchudon extends javax.swing.JFrame {
         textField1 = new java.awt.TextField();
         textField2 = new java.awt.TextField();
         textField3 = new java.awt.TextField();
+        cLear = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bảng chữ đơn");
@@ -93,6 +97,19 @@ public class Bangchudon extends javax.swing.JFrame {
         textField3.setEditable(false);
         textField3.setText("abcdefghijklmnopqrstuvwxyz");
 
+        cLear.setText("Clear");
+        cLear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cLearActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("PlainText");
+
+        jLabel4.setText("CipherText");
+
+        jLabel5.setText("ASCII");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,26 +117,38 @@ public class Bangchudon extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textField3, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(textField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(31, 31, 31)
-                        .addComponent(textField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel3)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dencrypTion)
-                            .addComponent(encrypTion)
-                            .addComponent(ranDomkey, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(59, 59, 59)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(31, 31, 31)
+                                        .addComponent(textField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(dencrypTion)
+                                            .addComponent(encrypTion)
+                                            .addComponent(ranDomkey, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cLear))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel5))
+                                .addGap(14, 14, 14)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textField3, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                                    .addComponent(textField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -127,19 +156,26 @@ public class Bangchudon extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(7, 7, 7)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(textField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
                         .addGap(23, 23, 23)
                         .addComponent(ranDomkey)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                        .addComponent(encrypTion)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(encrypTion)
+                            .addComponent(jLabel4))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -151,7 +187,9 @@ public class Bangchudon extends javax.swing.JFrame {
                             .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
                         .addComponent(dencrypTion)
-                        .addGap(82, 82, 82))))
+                        .addGap(27, 27, 27)
+                        .addComponent(cLear)
+                        .addGap(32, 32, 32))))
         );
 
         ranDomkey.getAccessibleContext().setAccessibleName("jButton2");
@@ -201,6 +239,7 @@ public class Bangchudon extends javax.swing.JFrame {
         // TODO add your handling code here:
         String ASCII = "abcdefghijklmnopqrstuvwxyz";//Khởi tạo chuỗi ASCII
         String plainText = jTextArea2.getText(); //Lấy giá trị của jTextArea2
+        plainText=plainText.replace(" ", "");// xóa khoảng trắng
         String key = textField1.getText(); //Lấy giá trị của textField1
         plainText = plainText.toLowerCase(); //Chuyển plainText thành chữ thường
         String encrypTion = ""; //Biến lưu kết quả
@@ -208,6 +247,7 @@ public class Bangchudon extends javax.swing.JFrame {
         if(plainText.isEmpty()){
             return;
         }
+        
         for(int i = 0; i< plainText.length();i++){ 
             int positionText = ASCII.indexOf(plainText.charAt(i));//Khởi tạo biến dùng để tìm vị trí của từng chữ trong plaintext
             char after = key.charAt(positionText); //Khởi tạo biến dùng để chứa vị trí của chữ đã tìm được 
@@ -241,6 +281,14 @@ public class Bangchudon extends javax.swing.JFrame {
         jTextArea1.setText("");
     }//GEN-LAST:event_dencrypTionActionPerformed
 
+    private void cLearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cLearActionPerformed
+        //Dọn sạch màn hình
+        jTextArea1.setText("");
+        jTextArea2.setText("");
+        textField1.setText("");
+        textField2.setText("");
+    }//GEN-LAST:event_cLearActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -267,20 +315,28 @@ public class Bangchudon extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Bangchudon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
+        
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Bangchudon().setVisible(true);
+                Bangchudon main = new Bangchudon();//Căn giữa màn hình
+                main.setLocationRelativeTo(null);
+                main.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cLear;
     private javax.swing.JButton dencrypTion;
     private javax.swing.JButton encrypTion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
