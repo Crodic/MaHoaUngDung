@@ -5,11 +5,18 @@
  */
 package a51;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import javafx.stage.FileChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -50,14 +57,15 @@ public class UIA51 extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("A51 Steam Cipher");
+        setLocation(new java.awt.Point(120, 100));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -111,10 +119,6 @@ public class UIA51 extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         jLabel4.setText("Không có file nào được chọn");
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane3.setViewportView(jTextArea3);
-
         jLabel5.setText("OpenFile and Copy Here");
 
         jButton6.setText("P");
@@ -130,6 +134,10 @@ public class UIA51 extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
+
+        jTextArea3.setColumns(20);
+        jTextArea3.setRows(5);
+        jScrollPane3.setViewportView(jTextArea3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,11 +173,13 @@ public class UIA51 extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane3)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane3))))
                     .addComponent(jLabel2))
                 .addGap(48, 48, 48))
         );
@@ -192,12 +202,12 @@ public class UIA51 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(22, 22, 22)
+                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(38, 38, 38)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -245,22 +255,7 @@ public class UIA51 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        int result = fileChooser.showOpenDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            jLabel4.setText(selectedFile.getAbsolutePath());
-            try {
-                BufferedReader br = new BufferedReader(new FileReader(selectedFile));
-                String line;
-                while ((line = br.readLine()) != null) {
-                    jTextArea3.append(line);
-                }
-                br.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
+        readFile();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -313,7 +308,16 @@ public class UIA51 extends javax.swing.JFrame {
     }
     //Đổi 1 chuỗi thành 1 dãy nhị phân 8 bit
 
-    public static String changeToBit(String text, boolean isKey) {
+    public static String changeToBit(String text, boolean isKey, boolean isEncrypt) {
+        if (isEncrypt) {
+            for (int i = 0; i < text.length(); i++) {
+                char c = text.charAt(i);
+                if (c > 127) {
+                    JOptionPane.showMessageDialog(null, "Ký tự: - [" + c + "] - Không nằm trong bảng mã ASCII. Vui Lòng dùng những từ chứa trong bảng mã ASCII");
+                    return "";
+                }
+            }
+        }
         String newBit = "";
         for (char c : text.toCharArray()) {
             String binary = Integer.toBinaryString(c);
@@ -331,16 +335,16 @@ public class UIA51 extends javax.swing.JFrame {
         }
         return newBit;
     }
-    //Đổi nhị phân thành 1 chuỗi
 
+    //Đổi nhị phân thành 1 chuỗi
     public static String changeToText(String text) {
-        String newText = "";
+        StringBuilder newText = new StringBuilder();
         for (int i = 0; i < text.length(); i += 8) {
             String binaryByte = text.substring(i, i + 8);
             char c = (char) Integer.parseInt(binaryByte, 2);
-            newText += c;
+            newText.append(c);
         }
-        return newText;
+        return newText.toString();
     }
     //Cắt chuỗi
 
@@ -418,8 +422,8 @@ public class UIA51 extends javax.swing.JFrame {
     //Mã Hoá A51 => Nhận về 1 chuỗi đã được mã hoá
     public static String encryption(String plainText, String key) {
         String cipherText = "";
-        plainText = changeToBit(plainText, false);
-        key = changeToBit(key, true);
+        plainText = changeToBit(plainText, false, true);
+        key = changeToBit(key, true, true);
         char[] newKey = new char[plainText.length()];
         char[] cipherTextOnBinary = new char[plainText.length()];
         char[] registerX = textToArray(sliceText(key, 0, 19));
@@ -444,8 +448,8 @@ public class UIA51 extends javax.swing.JFrame {
 
     public static String decryption(String cipherText, String key) {
         String plainText = "";
-        cipherText = changeToBit(cipherText, false);
-        key = changeToBit(key, true);
+        cipherText = changeToBit(cipherText, false, false);
+        key = changeToBit(key, true, true);
         char[] newKey = new char[cipherText.length()];
         char[] plainTextOnBinary = new char[cipherText.length()];
         char[] registerX = textToArray(sliceText(key, 0, 19));
@@ -466,29 +470,85 @@ public class UIA51 extends javax.swing.JFrame {
         plainText = changeToText(plainText);
         return plainText;
     }
-    public void saveFile() {
-    JFileChooser fileChooser = new JFileChooser();
-    int result = fileChooser.showSaveDialog(null);
-    if (result == JFileChooser.APPROVE_OPTION) {
-        File file = fileChooser.getSelectedFile();
-        String filePath = file.getAbsolutePath();
-        try {
-            FileWriter fileWriter = new FileWriter(new File(filePath));
-            fileWriter.write(jTextArea3.getText());
-            fileWriter.close();
-            JOptionPane.showMessageDialog(null, "Lưu Thành Công");
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Lỗi: " + ex.getMessage());
+
+    public void readFile() {
+        JFileChooser fileChooser = new JFileChooser();
+        int result = fileChooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            jLabel4.setText(selectedFile.getAbsolutePath());
+            try {
+                BufferedInputStream bis = new BufferedInputStream(new FileInputStream(selectedFile));
+                StringBuilder sb = new StringBuilder();
+                int data;
+                while ((data = bis.read()) != -1) {
+                    sb.append((char) data);
+                }
+                bis.close();
+                jTextArea3.setText(sb.toString());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
-}
 
+    public void saveFile() {
+        JFileChooser fileChooser = new JFileChooser();
+        int result = fileChooser.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            String filePath = file.getAbsolutePath();
+            try {
+                BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
+                String content = jTextArea3.getText();
+                for (int i = 0; i < content.length(); i++) {
+                    bos.write((int) content.charAt(i));
+                }
+                bos.close();
+                JOptionPane.showMessageDialog(null, "Lưu Thành Công");
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Lỗi: " + ex.getMessage());
+            }
+        }
+    }
 
-
-
-
-
-
+//    public void saveFile() {
+//        JFileChooser fileChooser = new JFileChooser();
+//        int result = fileChooser.showSaveDialog(null);
+//        if (result == JFileChooser.APPROVE_OPTION) {
+//            File file = fileChooser.getSelectedFile();
+//            String filePath = file.getAbsolutePath();
+//            try {
+//                FileWriter fileWriter = new FileWriter(new File(filePath));
+//                fileWriter.write(jTextArea3.getText());
+//                fileWriter.close();
+//                JOptionPane.showMessageDialog(null, "Lưu Thành Công");
+//            } catch (IOException ex) {
+//                JOptionPane.showMessageDialog(null, "Lỗi: " + ex.getMessage());
+//            }
+//        }
+//    }
+//    public void readFile() {
+//        JFileChooser fileChooser = new JFileChooser();
+//        int result = fileChooser.showOpenDialog(null);
+//        if (result == JFileChooser.APPROVE_OPTION) {
+//            File selectedFile = fileChooser.getSelectedFile();
+//            jLabel4.setText(selectedFile.getAbsolutePath());
+//            try {
+//                BufferedReader br = new BufferedReader(new FileReader(selectedFile));
+//                String line;
+//                StringBuilder sb = new StringBuilder();
+//                while ((line = br.readLine()) != null) {
+//                    sb.append(line);
+//                    sb.append("\n");
+//                }
+//                br.close();
+//                jTextArea3.setText(sb.toString());
+//            } catch (IOException ex) {
+//                ex.printStackTrace();
+//            }
+//        }
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
