@@ -7,17 +7,10 @@ package a51;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
-import javafx.stage.FileChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -65,6 +58,7 @@ public class UIA51 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("A51 Steam Cipher");
+        setBackground(new java.awt.Color(51, 153, 0));
         setLocation(new java.awt.Point(120, 100));
 
         jTextArea1.setColumns(20);
@@ -82,6 +76,7 @@ public class UIA51 extends javax.swing.JFrame {
         jLabel3.setText("KEY");
 
         jButton1.setText("Encryption");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -89,6 +84,7 @@ public class UIA51 extends javax.swing.JFrame {
         });
 
         jButton2.setText("Descryption");
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -96,6 +92,7 @@ public class UIA51 extends javax.swing.JFrame {
         });
 
         jButton3.setText("Save File");
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -103,6 +100,7 @@ public class UIA51 extends javax.swing.JFrame {
         });
 
         jButton4.setText("Clear");
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -110,18 +108,20 @@ public class UIA51 extends javax.swing.JFrame {
         });
 
         jButton5.setText("Open File");
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Không có file nào được chọn");
 
-        jLabel5.setText("OpenFile and Copy Here");
+        jLabel5.setText("Save File Content (Click P or C to tranport text)");
 
         jButton6.setText("P");
+        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -129,6 +129,7 @@ public class UIA51 extends javax.swing.JFrame {
         });
 
         jButton7.setText("C");
+        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -137,6 +138,7 @@ public class UIA51 extends javax.swing.JFrame {
 
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
+        jTextArea3.setEnabled(false);
         jScrollPane3.setViewportView(jTextArea3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -165,11 +167,10 @@ public class UIA51 extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)))
-                                .addGap(18, 18, 18)
+                                .addGap(32, 32, 32)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -177,9 +178,8 @@ public class UIA51 extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane3))))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jLabel2))
                 .addGap(48, 48, 48))
         );
@@ -444,8 +444,8 @@ public class UIA51 extends javax.swing.JFrame {
         cipherText = changeToText(cipherText);
         return cipherText;
     }
+    
     //Giải mã A51 => Nhận về 1 chuỗi đã được giải mã
-
     public static String decryption(String cipherText, String key) {
         String plainText = "";
         cipherText = changeToBit(cipherText, false, false);
@@ -511,44 +511,6 @@ public class UIA51 extends javax.swing.JFrame {
             }
         }
     }
-
-//    public void saveFile() {
-//        JFileChooser fileChooser = new JFileChooser();
-//        int result = fileChooser.showSaveDialog(null);
-//        if (result == JFileChooser.APPROVE_OPTION) {
-//            File file = fileChooser.getSelectedFile();
-//            String filePath = file.getAbsolutePath();
-//            try {
-//                FileWriter fileWriter = new FileWriter(new File(filePath));
-//                fileWriter.write(jTextArea3.getText());
-//                fileWriter.close();
-//                JOptionPane.showMessageDialog(null, "Lưu Thành Công");
-//            } catch (IOException ex) {
-//                JOptionPane.showMessageDialog(null, "Lỗi: " + ex.getMessage());
-//            }
-//        }
-//    }
-//    public void readFile() {
-//        JFileChooser fileChooser = new JFileChooser();
-//        int result = fileChooser.showOpenDialog(null);
-//        if (result == JFileChooser.APPROVE_OPTION) {
-//            File selectedFile = fileChooser.getSelectedFile();
-//            jLabel4.setText(selectedFile.getAbsolutePath());
-//            try {
-//                BufferedReader br = new BufferedReader(new FileReader(selectedFile));
-//                String line;
-//                StringBuilder sb = new StringBuilder();
-//                while ((line = br.readLine()) != null) {
-//                    sb.append(line);
-//                    sb.append("\n");
-//                }
-//                br.close();
-//                jTextArea3.setText(sb.toString());
-//            } catch (IOException ex) {
-//                ex.printStackTrace();
-//            }
-//        }
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
