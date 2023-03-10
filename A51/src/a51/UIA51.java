@@ -390,7 +390,7 @@ public class UIA51 extends javax.swing.JFrame {
     }
     //Lấy ra giá trị trong thanh ghi
 
-    public static int index(char[] array) {
+    public static int HandleIndex(char[] array) {
         int index = 0;
         if (array.length == 19) {
             index = Character.getNumericValue(array[8]); // Chuyển Char thành Int dùng Character.getNumericValue(char)
@@ -404,8 +404,13 @@ public class UIA51 extends javax.swing.JFrame {
     //Hàm Major
 
     public static int major(int x8, int y10, int z10) {
-        int XOR = x8 ^ y10 ^ z10;
-        return XOR;
+        int majorrityNumber;
+        if(x8==y10 || x8==z10){
+            majorrityNumber = x8;
+        }else{
+            majorrityNumber = y10;
+        }
+        return majorrityNumber;
     }
     //Hàm XOR chuỗi Encryption/Decryption với Key
 
@@ -433,9 +438,9 @@ public class UIA51 extends javax.swing.JFrame {
             registerX = NextRight(registerX, "x");
             registerY = NextRight(registerY, "y");
             registerZ = NextRight(registerZ, "z");
-            int takeIndexX = index(registerX);
-            int takeIndexY = index(registerY);
-            int takeIndexZ = index(registerZ);
+            int takeIndexX = HandleIndex(registerX);
+            int takeIndexY = HandleIndex(registerY);
+            int takeIndexZ = HandleIndex(registerZ);
             int major = major(takeIndexX, takeIndexY, takeIndexZ);
             newKey[i] = Character.forDigit(major, 10);
         }
@@ -459,9 +464,9 @@ public class UIA51 extends javax.swing.JFrame {
             registerX = NextRight(registerX, "x");
             registerY = NextRight(registerY, "y");
             registerZ = NextRight(registerZ, "z");
-            int takeIndexX = index(registerX);
-            int takeIndexY = index(registerY);
-            int takeIndexZ = index(registerZ);
+            int takeIndexX = HandleIndex(registerX);
+            int takeIndexY = HandleIndex(registerY);
+            int takeIndexZ = HandleIndex(registerZ);
             int major = major(takeIndexX, takeIndexY, takeIndexZ);
             newKey[i] = Character.forDigit(major, 10);
         }
