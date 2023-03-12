@@ -228,6 +228,7 @@ public class NewJFrame extends javax.swing.JFrame {
         }
         resual = chuyenBinarySangText(resual);
         jTextArea2.setText(resual);
+        jTextArea3.setText(resual);
         jTextArea1.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -248,6 +249,7 @@ public class NewJFrame extends javax.swing.JFrame {
         }
         resual = chuyenBinarySangText(resual);
         jTextArea1.setText(resual);
+        jTextArea3.setText(resual);
         jTextArea2.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -341,7 +343,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
         int i = 0, j = 0, k, t;
         String key = "";
-        for (int counter = 0; counter < 256; counter++) {
+        for (int counter = 0; counter < length; counter++) {
             i = (i + 1) % 256;
             j = (j + S[i]) % 256;
             int temp = S[i];
